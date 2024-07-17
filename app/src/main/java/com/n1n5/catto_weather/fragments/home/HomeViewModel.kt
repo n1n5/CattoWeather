@@ -1,6 +1,11 @@
 package com.n1n5.catto_weather.fragments.home
 
+import android.app.AlertDialog
+import android.content.Context
+import android.content.Intent
 import android.location.Geocoder
+import android.location.LocationManager
+import android.provider.Settings
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -23,8 +28,27 @@ class HomeViewModel(private val weatherDataRepository: WeatherDataRepository) : 
 
     fun getCurrentLocation(
         fusedLocationProviderClient: FusedLocationProviderClient,
-        geocoder: Geocoder
+        geocoder: Geocoder,
+        context: Context
     ) {
+        val locationManager = context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+
+        if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            val builder = AlertDialog.Builder(context)
+            builder.setMessage("Please turn on your device's location")
+                .setCancelable(false)
+                .setPositiveButton("Yes") { _, _ ->
+                    val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+                    context.startActivity(intent)
+                }
+                .setNegativeButton("No") { dialog, _ ->
+                    dialog.cancel()
+                }
+            val alert = builder.create()
+            alert.show()
+            return
+        }
+
         viewModelScope.launch {
             emitCurrentLocationUiState(isLoading = true)
             weatherDataRepository.getCurrentLocation(

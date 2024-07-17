@@ -136,7 +136,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun getCurrentLocation() {
-        homeViewModel.getCurrentLocation(fusedLocationProviderClient, geocoder)
+        homeViewModel.getCurrentLocation(fusedLocationProviderClient, geocoder, requireContext())
     }
 
     private fun isLocationPermissionGranted(): Boolean {
