@@ -9,6 +9,7 @@
     app:cardBackgroundColor="@color/white"
     app:cardCornerRadius="@dimen/_4sdp"
     app:cardElevation="0dp"
+    app:layout_constraintBottom_toBottomOf="parent"
     app:strokeColor="@color/sonic_silver"
     app:strokeWidth="1dp">
 

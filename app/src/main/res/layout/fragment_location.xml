@@ -48,7 +48,8 @@
             android:inputType="text"
             android:textColor="@color/raisin_black"
             android:textColorHint="@color/sonic_silver"
-            android:textSize="@dimen/_12ssp" />
+            android:textSize="@dimen/_12ssp"
+            tools:ignore="VisualLintTextFieldSize,TextContrastCheck" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
