@@ -19,4 +19,4 @@ A Kotlin project featuring real-time hourly weather forecasts and delightful kit
 * Improved UI
 
 ## App Demo
-Coming soon...
+[v1.0.2](https://youtu.be/98ivXMfZjzA)
